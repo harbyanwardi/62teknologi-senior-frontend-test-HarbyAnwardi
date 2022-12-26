@@ -1,4 +1,4 @@
-# vue-search
+# VUE FRONTEND with Lazy Load Pagination
 
 ## Project setup
 ```
