@@ -1,10 +1,13 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import Frontend from "../views/Frontend";
 import Backend from "../views/Backend";
+import ProductDetail from "../views/ProductDetail";
 
 const routes = [
-    {path: '/frontend', component: Frontend},
-    {path: '/backend', component: Backend}
+    {path: '/', component: Backend},
+    {
+        path: '/business/:id',
+        component: ProductDetail
+      },
 ]
 
 const router = createRouter({
