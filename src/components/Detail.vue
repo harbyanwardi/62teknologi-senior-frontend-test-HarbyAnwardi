@@ -14,7 +14,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+
     <div class="card">
         <div class="container-fliud">
             <div class="wrapper row">
@@ -24,19 +25,25 @@
                         <div class="tab-pane active" id="pic-1"><img :src="products.image_url" /></div>
                         <div class="tab-pane" id="pic-2"><img :src="products.image_url" /></div>
                         <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-4"><img src="https://www.foodiesfeed.com/wp-content/uploads/2020/05/costela-de-porco-assada-1.jpg" /></div>
+                        <div class="tab-pane" id="pic-4"><img
+                                src="https://www.foodiesfeed.com/wp-content/uploads/2020/05/costela-de-porco-assada-1.jpg" />
+                        </div>
                         <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
                         <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
                                     :src="products.image_url" /></a></li>
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking.jpg" /></a>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking.jpg" /></a>
                         </li>
-                        <li><a data-target="#pic-3" data-toggle="tab"><img src="https://www.foodiesfeed.com/wp-content/uploads/2020/05/costela-de-porco-assada-1.jpg" /></a>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="https://www.foodiesfeed.com/wp-content/uploads/2020/05/costela-de-porco-assada-1.jpg" /></a>
                         </li>
-                        <li><a data-target="#pic-4" data-toggle="tab"><img src="https://www.foodiesfeed.com/wp-content/uploads/2021/01/fried-salmon-with-sweet-soy-sauce-in-a-korean-restaurant.jpg" /></a>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="https://www.foodiesfeed.com/wp-content/uploads/2021/01/fried-salmon-with-sweet-soy-sauce-in-a-korean-restaurant.jpg" /></a>
                         </li>
-                        <li><a data-target="#pic-5" data-toggle="tab"><img src="https://www.foodiesfeed.com/wp-content/uploads/2022/06/take-away-box-with-variety-of-korean-food.jpg" /></a>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="https://www.foodiesfeed.com/wp-content/uploads/2022/06/take-away-box-with-variety-of-korean-food.jpg" /></a>
                         </li>
                     </ul>
 
@@ -46,7 +53,7 @@
                     <h3 class="product-title">{{ products.name }}</h3>
 
                     <div v-if="products.is_closed === 'false'" class="badge bg-success text-wrap" style="width: 5rem;">
-                       Open
+                        Open
                     </div>
                     <div v-else class="badge bg-danger text-wrap" style="width: 5rem;">
                         Closed
@@ -65,7 +72,8 @@
                         </div>
                         <span class="review-no">{{ products.review_count }} reviews</span>
                     </div>
-                    <p class="product-description">Makanan cepat saji dengan penyajian yang istimewa, dengan harga terjangkau. Coba sekarang
+                    <p class="product-description">Makanan cepat saji dengan penyajian yang istimewa, dengan harga
+                        terjangkau. Coba sekarang
                         dan rasakan sensasinya.
                     </p>
                     <h4 class="price">price: <span>Rp {{ formatPrice(products.price) }}</span></h4>
@@ -111,19 +119,80 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        
+        <div class="col-md-3 col-sm-12">
+            <div class="card mt-2">
+                <h6>Reviews</h6>
+                <div class="d-flex flex-row">
+                    <span class="ml-1 font-weight-bold">{{ products.rating }}.0</span> &nbsp;
+                    <div class="stars">
+                        <template v-for="index in products.rating">
+                            <span class="fa fa-star checked"></span>
+                        </template>
+                        <template v-for="i in (5 - products.rating)">
+                            <span class="fa fa-star"></span>
+                        </template>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="badges"> <span class="badge bg-dark ">All ({{ products.review_count }})</span>
+
+                </div>
+                <hr>
+                <div class="comment-section">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <img src="https://i.imgur.com/o5uMfKo.jpg" class="rounded-circle profile-image">
+                            <div class="d-flex flex-column ml-1 comment-profile">
+                                <div class="comment-ratings"> <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                </div>
+                                <span class="username">Lori Benneth</span>
+                            </div>
+                        </div>
+                        <div class="date">
+                            <span class="text-muted">2 May</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/tmdHXOY.jpg"
+                                class="rounded-circle profile-image">
+                            <div class="d-flex flex-column ml-1 comment-profile">
+                                <div class="comment-ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                        class="fa fa-star"></i> <i class="fa fa-star"></i> </div> <span
+                                    class="username">Timona Simaung</span>
+                            </div>
+                        </div>
+                        <div class="date"> <span class="text-muted">12 May</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-md-8 col-sm-12">
+            <div class="mt-2">
+                <Gmap :products="products" :coordinates="coordinates"/>
+            </div>
+            
+        </div>
+    </div>
+
 
 
 </template>
   
 <script>
+import Gmap from "./Gmap.vue";
 export default {
     name: "Details",
-    props: ['products'],
+    props: ['products','coordinates'],
     emits: ['set-filters'],
+    components: { Gmap },
     methods: {
-        counterStar() {
 
-        },
         formatPrice(value) {
             let val = (value / 1).toFixed(2).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -144,6 +213,7 @@ export default {
 }
 </script>
 <style scoped>
+
 img {
     max-width: 100%;
 }

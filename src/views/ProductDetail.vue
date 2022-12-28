@@ -1,5 +1,5 @@
 <template>
-    <Details :products="products" @set-filters="load"/>
+    <Details :products="products" :coordinates="coordinates" @set-filters="load"/>
   </template>
   
   <script>
@@ -12,6 +12,7 @@
     components: {Details},
     setup() {
       const products = ref([]);
+      const coordinates = ref([]);
       const filters = reactive({
         s: '',
         sort: '',
@@ -40,12 +41,14 @@
         const content = await response.json();
   
         products.value =content.data;
+        coordinates.value = content.data.coordinates;
       };
   
       onMounted(() => load(filters));
   
       return {
         products,
+        coordinates,
         load,
       }
     }
