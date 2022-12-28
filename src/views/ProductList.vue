@@ -7,7 +7,7 @@ import Products from "../components/Products";
 import {onMounted, reactive, ref} from "vue";
 
 export default {
-  name: "Backend",
+  name: "ProductList",
   components: {Products},
   setup() {
     const products = ref([]);
@@ -23,6 +23,7 @@ export default {
       filters.sort = f.sort;
       filters.limit = f.limit;
       filters.price_range = f.price_range;
+      filters.category_change = f.category_change;
       filters.page = f.page;
 
       const arr = [];
@@ -41,6 +42,10 @@ export default {
 
       if (filters.price_range) {
         arr.push(`price_range=${filters.price_range}`);
+      }
+
+      if (filters.category_change) {
+        arr.push(`category=${filters.category_change}`);
       }
 
       if (filters.page) {

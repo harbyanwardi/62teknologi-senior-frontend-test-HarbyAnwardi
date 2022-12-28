@@ -1,5 +1,5 @@
 <template>
-    <Details :products="products" :filters="filters" @set-filters="load" :lastPage="lastPage"/>
+    <Details :products="products" @set-filters="load"/>
   </template>
   
   <script>
@@ -19,7 +19,7 @@
       });
       const lastPage = ref(0);
       const route = useRoute();
-        const id = route.params.id;
+        const slug = route.params.slug;
       const load = async (f) => {
         filters.s = f.s;
         filters.page = f.page;
@@ -35,21 +35,18 @@
         }
         
         
-        const response = await fetch(`http://localhost:8000/api/business/${id}`);
+        const response = await fetch(`http://localhost:8000/api/business/${slug}`);
   
         const content = await response.json();
   
-        products.value = filters.page === 1 ? content.data : [...products.value, ...content.data];
-        lastPage.value = content.last_page;
+        products.value =content.data;
       };
   
       onMounted(() => load(filters));
   
       return {
         products,
-        filters,
-        lastPage,
-        load
+        load,
       }
     }
   }
