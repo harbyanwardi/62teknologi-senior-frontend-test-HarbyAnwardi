@@ -3,12 +3,10 @@
     <input class="form-control" placeholder="Search" @keyup="search($event.target.value)" />
     <div class="input-group-append">
       <select class="form-select" @change="category_change($event.target.value)">
-        <option value="0">Category</option>
-        <option value="0">All Category</option>
-        <option value="2">Food</option>
-        <option value="3">Drink</option>
-        <option value="4">Snack</option>
-        <option value="5">Noodle</option>
+        <option v-for="cat in categories" v-bind:value="cat.id">
+          {{ cat.title }}
+        </option>
+       
       </select>
     </div>
     <div class="input-group-append">
@@ -50,8 +48,8 @@
             <small class="text-muted">Rp {{ formatPrice(product.price) }}</small>
             <router-link v-bind:to="'/business/' + product.alias" custom v-slot="{ href }">
               <a :href="href" class="btn btn-success"> <i class="fa fa-search"></i>
-                  Quick View
-                </a>
+                Quick View
+              </a>
             </router-link>
 
           </div>
@@ -70,10 +68,26 @@ export default {
   name: "Products",
   props: ['products', 'filters', 'lastPage'],
   emits: ['set-filters'],
+  
+  created: function () {
+    this.syncCats()
+  },
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace('.', ',')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+    syncCats: async function () {
+      const response = await fetch(`http://localhost:8000/api/category`);
+
+      const content = await response.json();
+
+      this.categories = content.data;
+    }
+  },
+  data: function () {
+    return {
+      categories: []
     }
   },
   setup(props, context) {
@@ -138,9 +152,11 @@ export default {
 .input-group-append {
   padding-left: 10px;
 }
+
 .card {
   border-radius: 15px;
 }
+
 .img-product {
   border-radius: 15px;
 }
