@@ -3,6 +3,7 @@
     <input class="form-control" placeholder="Search" @keyup="search($event.target.value)" />
     <div class="input-group-append">
       <select class="form-select" @change="category_change($event.target.value)">
+        <option value="0">Category</option>
         <option v-for="cat in categories" v-bind:value="cat.id">
           {{ cat.title }}
         </option>
